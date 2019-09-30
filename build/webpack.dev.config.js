@@ -23,6 +23,13 @@ module.exports = {
     devServer: {
         compress: true,
         host: '0.0.0.0', // 允许ip访问
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8000',
+                pathRewrite: {'^/api' : ''},
+                changeOrigin:true
+            }
+        },
         hot:true, // 热更新
         historyApiFallback:true, // 解决启动后刷新404
         port: 8000
